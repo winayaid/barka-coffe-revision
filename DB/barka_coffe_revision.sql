@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Aug 26, 2023 at 11:49 AM
--- Server version: 10.6.14-MariaDB-cll-lve-log
--- PHP Version: 8.1.16
+-- Host: localhost:8889
+-- Generation Time: Aug 27, 2023 at 07:03 AM
+-- Server version: 5.7.34
+-- PHP Version: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `barkacof_barkacoffe`
+-- Database: `barka_coffe_revision`
 --
 
 -- --------------------------------------------------------
@@ -31,19 +31,22 @@ CREATE TABLE `pengguna` (
   `id_pengguna` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
+  `no_wa` text NOT NULL,
   `password` varchar(150) NOT NULL,
   `foto` varchar(150) NOT NULL,
   `role` enum('admin','user') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `pengguna`
 --
 
-INSERT INTO `pengguna` (`id_pengguna`, `nama`, `email`, `password`, `foto`, `role`) VALUES
-(29, 'Super Admin', 'adminbarka@gmail.com', '$2y$10$zgguPPPKXTZAZCztI1sIMuSrw7yABFWjIKAx1BCPVmRlK/o.2l8qS', 'cdb68fdb3528d3c9219b7a07978799d6.png', 'admin'),
-(30, 'syanda', 'syandaftrmn02@gmail.com', '$2y$10$Dr7rLmgMfE4GzopE9pzBs.ZiTHT6cjH2gn42puuesl.pDVcbaWZNW', 'cba2a28fc95db26d7f8ee07b9498f656.jpg', 'user'),
-(34, 'Muhamad bubung faizal', 'bubung@gmail.com', '$2y$10$/MzNGaUpDW.o48DIQorlLOVSyHvIcWeyrwTuGbAJX7BNk3bP9svUS', '8959c6ec152cbdfd51cef59c8aadcf0c.jpeg', 'user');
+INSERT INTO `pengguna` (`id_pengguna`, `nama`, `email`, `no_wa`, `password`, `foto`, `role`) VALUES
+(29, 'Super Admin', 'adminbarka@gmail.com', '', '$2y$10$zgguPPPKXTZAZCztI1sIMuSrw7yABFWjIKAx1BCPVmRlK/o.2l8qS', 'cdb68fdb3528d3c9219b7a07978799d6.png', 'admin'),
+(30, 'syanda', 'syandaftrmn02@gmail.com', '', '$2y$10$Dr7rLmgMfE4GzopE9pzBs.ZiTHT6cjH2gn42puuesl.pDVcbaWZNW', 'cba2a28fc95db26d7f8ee07b9498f656.jpg', 'user'),
+(34, 'Muhamad bubung faizal', 'bubung@gmail.com', '', '$2y$10$/MzNGaUpDW.o48DIQorlLOVSyHvIcWeyrwTuGbAJX7BNk3bP9svUS', '8959c6ec152cbdfd51cef59c8aadcf0c.jpeg', 'user'),
+(35, 'budi', 'budi@x.com', '+6285722071700', '$2y$10$3.qWDV/nXpJWUaQ.XcBrDuXsulP2q/9Ts.tEs92G1fUEk9gfcICIu', '022d9dd68f8247d7460aab608b09d416.png', 'user'),
+(36, 'Budi2', 'budi2@x.com', '', '$2y$10$LuSXGn/zLibwteQQ7yUAfuEZNjkZWM51tVg0wIrJJ45QErhw69ofm', 'eef63a6fb7037a51419e5af90a2d0142.png', 'user');
 
 -- --------------------------------------------------------
 
@@ -61,39 +64,25 @@ CREATE TABLE `penjualan` (
   `bukti_pembayaran` varchar(150) NOT NULL,
   `tanggal_beli` date NOT NULL,
   `tanggal_selesai` date NOT NULL,
+  `ongkir` int(11) NOT NULL,
   `status` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `penjualan`
 --
 
-INSERT INTO `penjualan` (`id_penjualan`, `id_pengguna`, `id_produk`, `alamat_pengiriman`, `jumlah_beli`, `total_harga`, `bukti_pembayaran`, `tanggal_beli`, `tanggal_selesai`, `status`) VALUES
-(1, 22, 1, '', 1, 20000, '', '2023-06-26', '0000-00-00', 'onprocess'),
-(2, 22, 1, '', 3, 60000, '41ab8182e1602fa9d84628ea69627415.png', '2023-06-26', '0000-00-00', 'verified'),
-(3, 24, 1, 'Jl. Prabu geusan ulun no 3', 3, 60000, 'b4952703bf29ed3d806044216af7b754.png', '2023-06-26', '0000-00-00', 'rejected'),
-(4, 24, 2, '', 3, 450000, 'e5fcd84dfeccd9a0e9ca2ab8ae35c311.png', '2023-06-26', '0000-00-00', 'onprocess'),
-(5, 24, 4, '', 3, 42000, '04f1a3f6a3670cf6ab852360dcc26a16.png', '2023-06-27', '0000-00-00', 'onprocess'),
-(6, 25, 1, 'Jl. Prabu geusan ulun no 3', 3, 60000, 'f76793e5bd4041383eadbc0fb501e4ad.png', '2023-06-27', '0000-00-00', 'verified'),
-(7, 25, 1, '', 3, 60000, '', '2023-06-27', '0000-00-00', 'onprocess'),
-(8, 22, 2, '', 1, 150000, '3a066a164d1727a8f8895d0c5205db95.png', '2023-06-27', '0000-00-00', 'onprocess'),
-(9, 24, 1, '', 1, 20000, '', '2023-06-28', '0000-00-00', 'onprocess'),
-(10, 27, 7, 'jjjj', 1, 130000, 'f72eafac7d9026cdcd56a3cf0eb4d239.png', '2023-06-29', '0000-00-00', 'rejected'),
-(11, 27, 2, '', 1, 150000, 'c21afc6c3c2b0e973152d7cd6f60af6c.JPG', '2023-06-29', '0000-00-00', 'onprocess'),
-(12, 27, 7, '', 1, 130000, '', '2023-06-29', '0000-00-00', 'onprocess'),
-(13, 27, 7, '', 1, 130000, '', '2023-06-30', '0000-00-00', 'onprocess'),
-(14, 27, 7, '', 1, 130000, '', '2023-06-30', '0000-00-00', 'onprocess'),
-(15, 27, 10, 'Angkrek', 1, 40000, '130aeb6bc16ad3f823858d325bada144.JPG', '2023-07-02', '0000-00-00', 'verified'),
-(16, 27, 14, '', 1, 35000, '', '2023-07-03', '0000-00-00', 'onprocess'),
-(17, 27, 18, '', 1, 40000, '', '2023-07-03', '0000-00-00', 'onprocess'),
-(18, 27, 11, '', 1, 75000, '', '2023-07-03', '0000-00-00', 'onprocess'),
-(19, 30, 10, '', 30, 1200000, '1fe7c6520fb13e5448196e45558cf9f1.jpg', '2023-07-07', '0000-00-00', 'verified'),
-(20, 34, 19, '', 1, 150000, '64382167bfe366b6e3fd363723fec27b.jpeg', '2023-08-23', '0000-00-00', 'verified'),
-(21, 34, 20, '', 1, 130000, '84f32b0143a9a556f0ebb41e2aebcd08.jpeg', '2023-08-23', '0000-00-00', 'verified'),
-(22, 34, 24, '', 1, 45000, '2d204c47bac56702cc3c70b7e309157b.jpeg', '2023-08-23', '0000-00-00', 'verified'),
-(23, 34, 19, '', 1, 150000, '', '2023-08-23', '0000-00-00', 'verified'),
-(24, 34, 25, '', 1, 90000, '', '2023-08-24', '0000-00-00', 'onprocess'),
-(25, 34, 25, '', 2, 180000, '', '2023-08-24', '0000-00-00', 'onprocess');
+INSERT INTO `penjualan` (`id_penjualan`, `id_pengguna`, `id_produk`, `alamat_pengiriman`, `jumlah_beli`, `total_harga`, `bukti_pembayaran`, `tanggal_beli`, `tanggal_selesai`, `ongkir`, `status`) VALUES
+(1, 22, 1, '', 1, 20000, '', '2023-06-26', '0000-00-00', 0, 'onprocess'),
+(2, 22, 1, '', 3, 60000, '41ab8182e1602fa9d84628ea69627415.png', '2023-06-26', '0000-00-00', 0, 'verified'),
+(3, 24, 1, 'Jl. Prabu geusan ulun no 3', 3, 60000, 'b4952703bf29ed3d806044216af7b754.png', '2023-06-26', '0000-00-00', 0, 'rejected'),
+(4, 24, 2, '', 3, 450000, 'e5fcd84dfeccd9a0e9ca2ab8ae35c311.png', '2023-06-26', '0000-00-00', 0, 'onprocess'),
+(20, 34, 19, '', 1, 150000, '64382167bfe366b6e3fd363723fec27b.jpeg', '2023-08-23', '0000-00-00', 14000, 'onprocess'),
+(21, 34, 20, '', 1, 130000, '84f32b0143a9a556f0ebb41e2aebcd08.jpeg', '2023-08-23', '0000-00-00', 0, 'verified'),
+(22, 34, 24, '', 1, 45000, '2d204c47bac56702cc3c70b7e309157b.jpeg', '2023-08-23', '0000-00-00', 12500, 'verified'),
+(23, 34, 19, '', 1, 150000, '', '2023-08-23', '0000-00-00', 0, 'verified'),
+(26, 35, 29, 'Jl. Prabu geusan ulun no 3 kkl', 1, 80000, '', '2023-08-27', '0000-00-00', 12000, 'onprocess'),
+(27, 36, 22, '', 3, 39000, '', '2023-08-27', '0000-00-00', 0, 'onprocess');
 
 -- --------------------------------------------------------
 
@@ -111,7 +100,7 @@ CREATE TABLE `produk` (
   `tanggal_perubahan` datetime DEFAULT NULL,
   `foto_produk` varchar(150) NOT NULL,
   `deskripsi` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `produk`
@@ -161,13 +150,13 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `produk`

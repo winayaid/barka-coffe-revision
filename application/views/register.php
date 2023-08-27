@@ -138,6 +138,13 @@
                 <input type="email" id="email" class="w-full border p-2 rounded" name="email" />
             </div>
             <div class="mb-4">
+                <label for="no_wa" class="block mb-2">No Wa</label>
+                <div class="flex items-center space-x-2">
+                    <span>+62</span>
+                    <input type="number" id="no_wa" class="w-full border p-2 rounded" name="no_wa" />
+                </div>
+            </div>
+            <div class="mb-4">
                 <label for="password" class="block mb-2">Password</label>
                 <input type="password" id="password" class="w-full border p-2 rounded" name="password" />
             </div>

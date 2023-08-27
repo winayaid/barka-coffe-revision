@@ -161,5 +161,25 @@
 		}
  	}
 
+	public function getDetailOrder($id_penjualan)
+ 	{
+		{
+			
+			return $this->db->query("SELECT penjualan.id_penjualan as id_penjualan,penjualan.ongkir as ongkir ,pengguna.nama AS nama,produk.nama_produk AS nama_produk, produk.harga AS harga,penjualan.jumlah_beli, penjualan.total_harga AS total_harga, penjualan.alamat_pengiriman AS alamat_pengiriman, penjualan.bukti_pembayaran AS bukti_pembayaran, penjualan.tanggal_beli, penjualan.tanggal_selesai, penjualan.status FROM penjualan INNER JOIN pengguna ON penjualan.id_pengguna = pengguna.id_pengguna INNER JOIN produk ON penjualan.id_produk = produk.id_produk WHERE penjualan.id_penjualan = '$id_penjualan'");
+		}
+ 	} 
+
+	public function updateOngkir($id_penjualan,$data)
+ 	{
+		$this->db->where('id_penjualan', $id_penjualan);
+		$this->db->update('penjualan', $data);
+	
+		if ($this->db->affected_rows() > 0) {
+			return 'ok';
+		} else {
+			return 'error';
+		}
+ 	}
+
  } 
 ?>

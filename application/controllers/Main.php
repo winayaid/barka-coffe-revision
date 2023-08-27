@@ -60,6 +60,7 @@ class Main extends CI_Controller {
 	{
 		$nama		= htmlspecialchars($this->input->post('nama'));
 		$email		= htmlspecialchars($this->input->post('email'));
+		$no_wa		= htmlspecialchars($this->input->post('no_wa'));
 		$password	= password_hash(htmlspecialchars($this->input->post('password')), PASSWORD_DEFAULT);
         $role	= 'admin';
 
@@ -410,6 +411,12 @@ class Main extends CI_Controller {
 		$this->load->view('admin/riwayat-penjualan/index', $data);
 	}
 
+	public function detailOrder($id_penjualan)
+	{
+		$data['detail_order'] = $this->MainModel->getDetailOrder($id_penjualan)->result()[0];
+		$this->load->view('admin/detail-penjualan/index', $data);
+	}
+
 	public function updatePaymentStatus()
 	{
 		$id_penjualan = htmlspecialchars($this->input->post('id_penjualan'));
@@ -421,6 +428,23 @@ class Main extends CI_Controller {
 
 		// var_dump($data);
 		$result = $this->MainModel->updatePaymentStatus($id_penjualan,$data);
+		if($result == 'ok'){
+			redirect('/penjualan');	
+		}else{
+			echo "error";
+		}
+	}
+
+	public function updateOngkir()
+	{
+		$id_penjualan = htmlspecialchars($this->input->post('id_penjualan'));
+		$ongkir = htmlspecialchars($this->input->post('ongkir'));
+
+		$data = array(
+			'ongkir' 	=> $ongkir, 
+		);
+
+		$result = $this->MainModel->updateOngkir($id_penjualan,$data);
 		if($result == 'ok'){
 			redirect('/penjualan');	
 		}else{

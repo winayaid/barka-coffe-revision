@@ -65,3 +65,4 @@ $route['user/edit/(:any)'] = 'main/updateUser/$1';
 
 // RIWAYAT PENJUALAN
 $route['penjualan'] = 'main/riwayatPenjualan';
+$route['penjulan/detail/(:any)'] = 'main/detailOrder/$1';
