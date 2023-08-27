@@ -43,7 +43,7 @@
  	{
 		{
 			
-			return $this->db->query("SELECT penjualan.id_penjualan as id_penjualan,pengguna.nama AS nama,produk.nama_produk AS nama_produk, produk.harga AS harga,penjualan.jumlah_beli, penjualan.total_harga AS total_harga, penjualan.alamat_pengiriman AS alamat_pengiriman, penjualan.bukti_pembayaran AS bukti_pembayaran, penjualan.tanggal_beli, penjualan.tanggal_selesai, penjualan.status FROM penjualan INNER JOIN pengguna ON penjualan.id_pengguna = pengguna.id_pengguna INNER JOIN produk ON penjualan.id_produk = produk.id_produk WHERE pengguna.id_pengguna = '$id_pengguna' AND penjualan.id_penjualan = '$id_penjualan'")->result();
+			return $this->db->query("SELECT penjualan.id_penjualan as id_penjualan,pengguna.nama AS nama,produk.nama_produk AS nama_produk, produk.harga AS harga,penjualan.jumlah_beli, penjualan.total_harga AS total_harga, penjualan.alamat_pengiriman AS alamat_pengiriman, penjualan.bukti_pembayaran AS bukti_pembayaran, penjualan.tanggal_beli, penjualan.tanggal_selesai, penjualan.status, penjualan.ongkir FROM penjualan INNER JOIN pengguna ON penjualan.id_pengguna = pengguna.id_pengguna INNER JOIN produk ON penjualan.id_produk = produk.id_produk WHERE pengguna.id_pengguna = '$id_pengguna' AND penjualan.id_penjualan = '$id_penjualan'")->result();
 		}
  	} 
 

@@ -7,7 +7,7 @@
                   <h2 class="text-2xl font-bold mb-4 flex items-center">
                       <img src="<?= base_url(); ?>/assets/images/map-orange.svg" alt="Title Icon"
                           class="w-6 h-6 mr-2 inline" />
-                      <span class="text-primary">Alamat Pengirim </span>
+                      <span class="text-primary">Alamat Penerima </span>
                   </h2>
                   <div class="flex space-x-4 mt-4">
                       <div class="w-1/5">
@@ -65,23 +65,37 @@
                       <span class="text-primary">Produk Dipesan</span>
                   </h2>
                   <div class="flex space-x-4 mt-4 justify-between">
-                      <div class="w-1/5">
+                      <div class="w-1/3">
                           <p class="font-bold"><?= $my_detail_order->nama_produk ?></p>
                           <p class="font-bold text-lg mt-20">Total Pembayaran</p>
-                          <p class="font-bold text-primary text-lg">Rp <?= $my_detail_order->total_harga ?></p>
+                          <?php if ($my_detail_order->ongkir == 0): ?>
+                            <p class="font-bold text-primary text-lg">Rp <?= $my_detail_order->total_harga ?> <span class="text-sm text-red-600 font-normal">(Belum termasuk ongkir)</span></p>
+                          <?php else: ?>
+                            <p class="font-bold text-primary text-lg">Rp <?= $my_detail_order->total_harga + $my_detail_order->ongkir ?></p>
+                          <?php endif; ?>
                       </div>
-                      <div class="w-max flex space-x-6 items-center pr-16">
+                      <div class="w-max flex space-x-6 items-start pr-16">
                           <div class="w-max text-center">
                               <p>Harga Satuan:</p>
-                              <p><?= $my_detail_order->harga ?></p>
+                              <p class="mt-2"><?= $my_detail_order->harga ?></p>
                           </div>
                           <div class="w-max text-center">
                               <p>Jumlah</p>
-                              <p><?= $my_detail_order->jumlah_beli ?></p>
+                              <p class="mt-2"><?= $my_detail_order->jumlah_beli ?></p>
                           </div>
                           <div class="w-max text-center">
-                              <p>Subtotal Produk</p>
-                              <p><?= $my_detail_order->total_harga ?></p>
+                              <p>Total Harga</p>
+                              <p class="mt-2"><?= $my_detail_order->total_harga ?></p>
+                          </div>
+                          <div class="w-max text-center">
+                              <p>Ongkos Kirim</p>
+                              <?php if ($my_detail_order->ongkir == 0): ?>
+                                <a href="https://api.whatsapp.com/send?phone=+6281546859083&text=Saya%20ingin%20mengetahui%20berapa%20ongkir%20untuk%20pesanan%20saya.%20Saat%20ini,%20informasi%20ongkir%20belum%20muncul.%20Mohon%20bantuannya%20untuk%20memberikan%20detail%20ongkos%20kirim.%0A%0ATerima%20kasih!%0A%0ASalam,%0A<?= $my_detail_order->nama ?>" target="_blank">
+                                    <button class="bg-primary w-max text-white px-4 py-2 rounded-lg mb-4">Konfirmasi Ongkos Kirim</button>
+                                </a>
+                              <?php else: ?>
+                                <p class="mt-2"><?= $my_detail_order->ongkir ?></p>
+                              <?php endif; ?>
                           </div>
                       </div>
                   </div>
@@ -90,13 +104,17 @@
 
           <!-- <?php var_dump($my_detail_order); ?> -->
           <!-- ---------------- -->
+          <?php if ($my_detail_order->ongkir > 0): ?>
           <div class="border bg-white flex p-10 rounded-xl">
               <div class="w-full flex flex-col justify-center items-left">
 
                   <h2 class="text-2xl font-bold mb-4 flex items-center">
                       <span class="text-primary">Pembayaran</span>
                   </h2>
-                  <h1>Bukti Pembayaran </h1>
+                  <p class="text-lg font-medium">Anda dapat dengan mudah melakukan pembayaran melalui nomor rekening berikut:</p>
+                  <p><span class="font-medium">Bank:</span> BCA</p>
+                  <p><span class="font-medium">Nomor Rekening:</span> 7310252738</p>
+                  <h1 class="mt-4">Bukti Pembayaran </h1>
                   <?php if($my_detail_order->bukti_pembayaran != '') : ?>
                   <img src="<?= base_url(); ?>assets/images/payment/<?= $my_detail_order->bukti_pembayaran ?>"
                       alt="Card 1" class=" h-40 w-40 object-cover rounded-md mb-4" />
@@ -137,6 +155,7 @@
                   </table> -->
               </div>
           </div>
+          <?php endif; ?>
           <!-- ---------------- -->
       </div>
   </section>
