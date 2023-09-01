@@ -20,9 +20,18 @@
                  <hr class="border-dashed border-gray-300 my-4" />
                  <!-- Dashed line -->
                  <h3 class="text-lg font-medium text-center"><?= $row->nama_produk ?></h3>
-                 <div class="flex justify-between text-gray-600 mt-2">
-                     <span><?= $row->berat ?>g</span>
-                     <span>Rp. <?= $row->harga ?></span>
+                 <hr class="mt-3" />
+                 <div class="flex justify-between text-gray-600 mt-2 flex flex-col space-y-1">
+                     <p class="font-bold text-lg">Rp. <?= $row->harga ?></p>
+                     <div class="flex flex-col">
+                         <p class="flex space-x-2 items-center text-sm"><span>Berat:</span>
+                             <span><?= $row->berat ?>g</span>
+                         </p>
+                         <p class="flex space-x-2 items-center text-sm"><span>Stok:</span> <span><?= $row->stok ?>
+                                 bks</span>
+                         </p>
+                     </div>
+
                  </div>
              </a>
              <?php endforeach; ?>
