@@ -191,6 +191,10 @@ class Main extends CI_Controller {
 		$data['pengguna'] = $this->MainModel->getUsers()->result(); 
 		$this->load->view('admin/user-list/index', $data);
 	} 
+
+	function addUser() {
+		$this->load->view('admin/user-add/index');
+	}
  
     public function updateUser($id_pengguna)
 	{

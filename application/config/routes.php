@@ -62,6 +62,7 @@ $route['produk/edit/(:any)'] = 'main/produkUpdate/$1';
 // USERS
 $route['user'] = 'main/users';
 $route['user/edit/(:any)'] = 'main/updateUser/$1';
+$route['user/add'] = 'main/addUser';
 
 // RIWAYAT PENJUALAN
 $route['penjualan'] = 'main/riwayatPenjualan';

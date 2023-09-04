@@ -14,7 +14,14 @@
 		<!-- Content Area -->
 		<section class="container mx-auto p-8">
 			<!-- Your content goes here -->
-			<h1 class="text-2xl font-bold">Daftar Pengguna</h1>
+			<div class="flex justify-between">
+				<h1 class="text-2xl font-bold">Daftar Pengguna</h1>
+				<a href="<?= base_url('user/add') ?>">
+					<button class="bg-white rounded px-4 py-2">
+						Tambah Pengguna
+					</button>
+				</a>
+			</div>
 			<div class="grid grid-cols-5 gap-4 mt-8">
 				<?php foreach ($pengguna as $row): ?>
 				<div class="bg-white rounded-lg shadow-md p-4">
