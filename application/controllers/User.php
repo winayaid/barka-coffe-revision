@@ -95,7 +95,8 @@ class User extends CI_Controller {
 			'status'				=> 'onprocess'
 		);
 
-		$this->UserModel->order($data,'penjualan');
+		$this->UserModel->order($data,'penjualan'); 
+		
 		redirect('/user/myOrder');	
 	}
 

@@ -22,7 +22,7 @@
 
 <body>
     <div class="flex flex-col items-center justify-center h-screen">
-        <h2 class="text-3xl font-bold mb-4">Sign In</h2>
+        <a class="text-3xl font-bold mb-4" href="<?= base_url() ?>">Sign In</a>
         <p class="text-gray-600 mb-4">
             Don't have an account?
             <a href="<?= base_url(); ?>main/register" class="text-blue-500">Create Account</a>

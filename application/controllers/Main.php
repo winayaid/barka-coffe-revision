@@ -56,7 +56,7 @@ class Main extends CI_Controller {
 	}
 
 	// process
-	public function registerProcess()
+	public function registerAdminProcess()
 	{
 		$nama		= htmlspecialchars($this->input->post('nama'));
 		$email		= htmlspecialchars($this->input->post('email'));
@@ -74,7 +74,7 @@ class Main extends CI_Controller {
 			$config['upload_path']			='./assets/images/user';
 			$config['allowed_types'] 		='jpg|gif|png|jpeg';
 			$config['encrypt_name']			=TRUE;
-
+ 
 
 			$this->load->library('upload',$config);
 			if(!$this->upload->do_upload('foto')){
@@ -89,16 +89,17 @@ class Main extends CI_Controller {
 		$data = array(
 			'id_pengguna'	   	=> '',
 			'nama' 	   	        => $nama,
+			'no_wa'				=> '+62'.$no_wa,
 			'email' 	   		=> $email,
 			'password' 	   		=> $password,
 			'role' 	   		    => $role,
 			'foto' 				=> $foto, 
 		);
 
-		var_dump($data);
+		// var_dump($data);
 
 		$this->MainModel->register($data,'pengguna');
-		redirect('/user/login');		
+		redirect('/main');		
 	}
 
 
@@ -106,6 +107,7 @@ class Main extends CI_Controller {
 	{
 		$nama		= htmlspecialchars($this->input->post('nama'));
 		$email		= htmlspecialchars($this->input->post('email'));
+		$no_wa		= htmlspecialchars($this->input->post('no_wa'));
 		$password	= password_hash(htmlspecialchars($this->input->post('password')), PASSWORD_DEFAULT);
         $role	= 'user';
 
@@ -134,6 +136,7 @@ class Main extends CI_Controller {
 		$data = array(
 			'id_pengguna'	   	=> '',
 			'nama' 	   	        => $nama,
+			'no_wa'				=> '+62'.$no_wa,
 			'email' 	   		=> $email,
 			'password' 	   		=> $password,
 			'role' 	   		    => $role,
